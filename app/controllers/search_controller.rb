@@ -1,6 +1,9 @@
 class SearchController < ApplicationController
 require 'rubygems'
 	require 'ruby-tmdb3'
+	require 'rest_client'
+
+
 
 	# setup your API key
 	Tmdb.api_key = "20c4c7eb600624da5fa682498ce2ca33"
@@ -14,9 +17,15 @@ require 'rubygems'
 	def self.index
 	end
   def index
-  
+    headers = {
+		:accept => 'application/json'
+		}
+
+	#@response = RestClient.get 'http://private-anon-2b576ff3e-themoviedb.apiary-mock.com/3/movie/popular' , headers
+	
+	
 	@film = Array.new
-	@movie = TmdbMovie.find(:title => "Iron", :limit => 3)
+	@movie = TmdbMovie.find(:title => "Seigneur", :limit => 3)
 
 	@movie.each do |f|
 		@film << f

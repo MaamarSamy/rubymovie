@@ -13,7 +13,12 @@
   <tr>
     <td><%= films.title %></td>
     <td><%=  films.release_date %></td>
-	<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "rss feed") %></td>
+	<% if films.poster_path != nil %>
+		<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
+	<% else %>
+		<td> Affiche indisponible </td>
+	<% end %>
+	
 	<td><%= link_to "Profile", controller: "liste", action: "add", id: films.id %></td>
   </tr>
 	<% end %>

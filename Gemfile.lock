@@ -48,6 +48,7 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.2)
+    ffi (1.9.6-x86-mingw32)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.6)
@@ -63,6 +64,7 @@ GEM
     minitest (5.5.0)
     multi_json (1.10.1)
     mysql2 (0.3.17)
+    netrc (0.10.2)
     orm_adapter (0.5.0)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -87,6 +89,10 @@ GEM
       json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rest-client (1.7.2-x86-mingw32)
+      ffi (~> 1.9)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     ruby-tmdb3 (0.3.4)
       addressable
       deepopenstruct
@@ -298,6 +304,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   rails (= 4.1.8)
+  rest-client
   ruby-tmdb3
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

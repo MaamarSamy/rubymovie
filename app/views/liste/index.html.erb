@@ -1,0 +1,29 @@
+<h1>Voici votre liste</h1>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Date sortie</th>
+	<th>Poster</th>
+	<th>Check</th>
+  </tr>
+	<% @filmListe.each do |films| %>
+		<tr>
+			<td><%= films.title %></td>
+			<td><%=  films.release_date %></td>
+			<% if films.poster_path != nil %>
+				<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
+			<% else %>
+				<td> Affiche indisponible </td>
+			<% end %>
+			<% if @checked[@idcheck] == 1 %>
+				<td> Film Vu! </td>			
+			<% else %>
+				<td><%= link_to "Profile", controller: "liste", action: "vu", id: films.id %></td>
+			<% end %>
+			<%= @idcheck += 1 %>
+		</tr>
+	<% end %>
+  
+
+</table>

@@ -8,6 +8,7 @@ gem 'mysql2'
 # dedvise pour se logger
 gem 'devise'
 # api imdb
+gem 'rest-client'
 gem 'ruby-tmdb3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
