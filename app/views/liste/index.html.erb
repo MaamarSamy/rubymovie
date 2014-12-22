@@ -19,7 +19,7 @@
 			<% if @checked[@idcheck] == 1 %>
 				<td> Film Vu! </td>			
 			<% else %>
-				<td><%= link_to "Profile", controller: "liste", action: "vu", id: films.id %></td>
+				<td><%= link_to "Marquer comme 'Vu' ", controller: "liste", action: "vu", id: films.id %></td>
 			<% end %>
 			<%= @idcheck += 1 %>
 		</tr>
