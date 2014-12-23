@@ -1,27 +1,38 @@
 <h1>Search#result</h1>
 <p>Find me in app/views/search/result.html.erb</p>
-<p> variable de recherche <% puts @test %> </p>
-<table>
-  <tr>
-    <th>Nom</th>
-    <th>Date sortie</th>
-	<th>Poster</th>
-	<th>Ajouter a ma liste</th>
-  </tr>
+<p> variable de recherche <%=  @test %> </p>
+
+<% if (@filmSearch.empty? == true) %>
+	<h3> Malheureusement votre recherche n'a renvoyé aucun résultat. </h3>
+<% else %>
+	<table>
+	  <tr>
+		<th>Nom</th>
+		<th>Date sortie</th>
+		<th>Poster</th>
+		<th>Ajouter a ma liste</th>
+	  </tr>
 
 	<% @filmSearch.each do |films| %>
-  <tr>
-    <td><%= films.title %></td>
-    <td><%=  films.release_date %></td>
-	<% if films.poster_path != nil %>
-		<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
-	<% else %>
-		<td> Affiche indisponible </td>
+	  <tr>
+		<td><%= films.title %></td>
+		<td><%=  films.release_date %></td>
+		<% if films.poster_path != nil %>
+			<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
+		<% else %>
+			<td> Affiche indisponible </td>
+		<% end %>
+		
+		<% if @dejadansListe.include?(films.id) == true %>
+			<td> Ce film est déjà dans votre liste </td>
+		<% else %>
+			<td><%= link_to "Ajouter ce film", controller: "liste", action: "add", id: films.id %>
+			</td>
+		<% end %>
+		
+	  </tr>
 	<% end %>
-	
-	<td><%= link_to "Ajouter ce film", controller: "liste", action: "add", id: films.id %></td>
-  </tr>
-	<% end %>
-  
+	  
 
-</table>
+	</table>
+<% end %>

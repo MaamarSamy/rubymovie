@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'search/result'
   get 'liste/add'
   get 'liste/vu'
+  get 'liste/delete'
   get 'liste/index'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

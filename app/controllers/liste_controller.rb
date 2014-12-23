@@ -1,5 +1,4 @@
 class ListeController < ApplicationController
-
 	def index
 		@filmListe = Array.new
 		@checked = Array.new
@@ -16,6 +15,14 @@ class ListeController < ApplicationController
 	
 	def vu
 	    Liste.connection.execute("UPDATE `listes` SET `checked`=true WHERE id_user = '#{current_user.id}' AND id_film = '#{params[:id]}' ")
+		# @@message = "Vous venez de marquer un film vu"
+		redirect_to controller: "/liste", action: "index"
+	end
+	
+	
+	def delete
+	    Liste.connection.execute("DELETE FROM listes WHERE id_user = '#{current_user.id}' AND id_film = '#{params[:id]}' ")
+		# @@message = "Le film a bien été supprimé de votre liste"
 		redirect_to controller: "/liste", action: "index"
 	end
 	
@@ -23,6 +30,7 @@ class ListeController < ApplicationController
 		addListe = {:id_user => current_user.id, :id_film => params[:id], :checked => false}
 		@liste = Liste.new(addListe)
 		@liste.save
+		# @@message = "Le film a bien été ajouté à votre liste"
 		redirect_to controller: "/liste", action: "index"
 	end
 end
