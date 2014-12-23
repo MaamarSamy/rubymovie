@@ -7,9 +7,10 @@ require 'rubygems'
 
 	# setup your API key
 	Tmdb.api_key = "20c4c7eb600624da5fa682498ce2ca33"
-
+	api_key = "20c4c7eb600624da5fa682498ce2ca33"
 	# setup your default language
 	Tmdb.default_language = "fr"
+	default_language = "fr"
 	
 	# 4.times { |i| @film << i }
 
@@ -21,7 +22,7 @@ require 'rubygems'
 		:accept => 'application/json'
 		}
 
-	# @response = RestClient.get 'http://private-anon-2b576ff3e-themoviedb.apiary-mock.com/3/movie/popular' , headers
+	@response = RestClient.get 'http://private-anon-e2e5a6b1f-themoviedb.apiary-mock.com/3/movie/top_rated' , headers
 	
 	
 	@film = Array.new
