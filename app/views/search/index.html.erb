@@ -21,7 +21,7 @@
     <td><%= films.title %></td>
     <td><%=  films.release_date %></td>
 	<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche du film") %></td>
-	<td><%= films.vote_average %> </td>
+	<td><%= films.overview.ljust(100) %> </td>
 	
   </tr>
 	<% end %>
