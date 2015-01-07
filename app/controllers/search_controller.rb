@@ -41,14 +41,32 @@ require 'rubygems'
 		@dejadansListe <<  @maListe[i]["id_film"]
 		i += 1
 	end
-  
+    @bandeA = Array.new
+	@a = 0
 	@filmSearch = Array.new
 	@test = params["search"] 
-	@result = TmdbMovie.find(:title => params["search"], :limit => 10)
+	@result = TmdbMovie.find(:title => params["search"], :limit => 5, :expand_results => true)
 	@result.each do |f|
 		@filmSearch << f
 	end
 	
+	@filmSearch.each do |bo|
+		@b = 0
+		@debut_key = 0
+		@response = RestClient.get 'http://api.themoviedb.org/3/movie/' + bo.id.to_s + '/videos?language=fr&api_key=20c4c7eb600624da5fa682498ce2ca33'	
+		@debut_key = @response.split('"')
+		if @debut_key.length == 5
+			@response2 = RestClient.get 'http://api.themoviedb.org/3/movie/' + bo.id.to_s + '/videos?api_key=20c4c7eb600624da5fa682498ce2ca33'
+			@debut_key = @response2.split('"')
+			if @debut_key.length == 5
+				@bandeA << "nope"
+			else
+				@bandeA << @debut_key[15]
+			end
+		else
+			@bandeA << @debut_key[15]
+		end
+	end
 	# format.html { redirect_to(@search,:result => 'Post was successfully created.') }
   end
 end

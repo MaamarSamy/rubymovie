@@ -8,7 +8,7 @@
 	<table>
 	  <tr>
 		<th>Nom</th>
-		<th>Date sortie</th>
+		<th>Bande Annonce</th>
 		<th>Poster</th>
 		<th>Ajouter a ma liste</th>
 	  </tr>
@@ -16,7 +16,11 @@
 	<% @filmSearch.each do |films| %>
 	  <tr>
 		<td><%= films.title %></td>
-		<td><%=  films.release_date %></td>
+		<% if @bandeA[@a] == "nope" %>
+			<td> Bande annonce non disponible </td>
+		<% else %>
+			<td><iframe src="https://www.youtube.com/embed/<%= @bandeA[@a] %>" width="320" height="240" frameborder="0"></iframe></td>
+		<% end %>
 		<% if films.poster_path != nil %>
 			<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
 		<% else %>
@@ -31,8 +35,10 @@
 		<% end %>
 		
 	  </tr>
+	  <% @a += 1 %>
 	<% end %>
 	  
 
 	</table>
+	<%= @debut_key.length %>
 <% end %>
