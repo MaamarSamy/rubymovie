@@ -9,7 +9,9 @@ gem 'mysql2'
 gem 'devise'
 # api imdb
 gem 'rest-client'
+gem 'ruby-tmdb'
 gem 'ruby-tmdb3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

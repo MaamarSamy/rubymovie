@@ -1,36 +1,35 @@
 class SearchController < ApplicationController
-require 'rubygems'
-	require 'ruby-tmdb3'
-	require 'rest_client'
-
-
-
-	# setup your API key
-	Tmdb.api_key = "20c4c7eb600624da5fa682498ce2ca33"
-	api_key = "20c4c7eb600624da5fa682498ce2ca33"
-	# setup your default language
-	Tmdb.default_language = "fr"
-	default_language = "fr"
 	
-	# 4.times { |i| @film << i }
+	
+  require 'rubygems'
+  # require 'ruby-tmdb3'
+  require 'rest_client'
+  # setup your API key
+  Tmdb.api_key = "20c4c7eb600624da5fa682498ce2ca33"
+  # api_key = "20c4c7eb600624da5fa682498ce2ca33"
+  Tmdb.default_language = "fr"
 
 
-	def self.index
-	end
+  def self.index
+  end
+  
   def index
-    headers = {
+ 
+	headers = {
 		:accept => 'application/json'
-		}
-
-	@response = RestClient.get 'http://private-anon-e2e5a6b1f-themoviedb.apiary-mock.com/3/movie/top_rated' , headers
-	
-	
-	@film = Array.new
-	@movie = TmdbMovie.find(:title => "Seigneur", :limit => 3)
-
-	@movie.each do |f|
-		@film << f
+	}
+	@dejadansList = Array.new
+	z = 0
+	@maList = Liste.connection.select_all("SELECT id_film FROM listes WHERE id_user = ' #{current_user.id}'")
+	@maList.each do 
+		@dejadansList <<  @maList[z]["id_film"]
+		z += 1
 	end
+	@response = RestClient.get 'http://api.themoviedb.org/3/movie/popular?language=fr&api_key=20c4c7eb600624da5fa682498ce2ca33&page=1'
+	# @popular = @response.split('"')
+	@test = JSON.parse(@response)
+	
+	
   end
   
   def result
@@ -41,7 +40,7 @@ require 'rubygems'
 		@dejadansListe <<  @maListe[i]["id_film"]
 		i += 1
 	end
-    @bandeA = Array.new
+	@bandeA = Array.new
 	@a = 0
 	@filmSearch = Array.new
 	@test = params["search"] 
@@ -67,6 +66,6 @@ require 'rubygems'
 			@bandeA << @debut_key[15]
 		end
 	end
-	# format.html { redirect_to(@search,:result => 'Post was successfully created.') }
+	
   end
 end

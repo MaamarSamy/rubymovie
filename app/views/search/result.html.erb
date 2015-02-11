@@ -7,10 +7,10 @@
 <% else %>
 	<table>
 	  <tr>
-		<th>Nom</th>
+		<th>Titre</th>
 		<th>Bande Annonce</th>
 		<th>Poster</th>
-		<th>Ajouter a ma liste</th>
+		<th>Ajouter à ma liste</th>
 	  </tr>
 
 	<% @filmSearch.each do |films| %>
@@ -21,6 +21,7 @@
 		<% else %>
 			<td><iframe src="https://www.youtube.com/embed/<%= @bandeA[@a] %>" width="320" height="240" frameborder="0"></iframe></td>
 		<% end %>
+		
 		<% if films.poster_path != nil %>
 			<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
 		<% else %>
@@ -40,5 +41,4 @@
 	  
 
 	</table>
-	<%= @debut_key.length %>
 <% end %>
