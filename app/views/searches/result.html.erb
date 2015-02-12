@@ -5,7 +5,7 @@
 <% if (@filmSearch.empty? == true) %>
 	<h3> Malheureusement votre recherche n'a renvoyé aucun résultat. </h3>
 <% else %>
-	<table>
+	<table class="listFilm">
 	  <tr>
 		<th>Titre</th>
 		<th>Bande Annonce</th>
@@ -31,7 +31,7 @@
 		<% if @dejadansListe.include?(films.id) == true %>
 			<td> Ce film est déjà dans votre liste </td>
 		<% else %>
-			<td><%= link_to "Ajouter ce film", controller: "liste", action: "add", id: films.id %>
+			<td><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films.id %>
 			</td>
 		<% end %>
 		

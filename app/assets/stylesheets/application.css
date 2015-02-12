@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+header{
+	margin: 0;
+	width: 100%;
+	background: #4F7F7F;
+	text-align: right;
+	height: 50px;
+	line-height: 50px;
+}
+
+header a{
+	font-size: 17px;
+	color: #fff !important;
+}
+header p.title{
+	float: left;
+	font-size: 30px;
+	margin-left: 2%;
+	font-family: fantasy;
+	margin:0;
+	color: #0a1f1f;
+}
+header p.log{
+	margin:0;
+	color:#0a1f1f;
+}

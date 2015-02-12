@@ -1,3 +1,31 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#header2{
+	width: 100%;
+	text-align: center;
+	background: #0a1f1f;
+	margin-bottom: 3%;
+	height: 90px;
+	line-height: 90px;
+
+}
+#search{
+	font-size: 25px;
+	width: 345px;
+	text-align: center;
+	color: #4F7F7F;
+}
+.submit_search{
+	width: 110px;
+	font-size: 25px;
+	color:#0a1f1f;
+}
+h1{
+	display: inline-block !important;
+	width: 100%;
+	margin: 0 0 0 90px;
+}
+.gauche{width:49% !important;margin-right: 0.5%;}
+.droite{width:49% !important;margin-left: 0.5%;}
+

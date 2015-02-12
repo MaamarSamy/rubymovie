@@ -1,0 +1,22 @@
+<div id="header2">
+<h1>Voici votre liste</h1>
+
+<% if (@maListe.empty? == true) %>
+	<h1>Votre liste et actuellement vide!</h1></div>
+<% else %>
+	<div class="listFilm">
+		<% @maListe.each do |liste| %>
+		     <%  p liste.movie %>
+				<li class="title"><%= liste.movie.name %></li>
+				<% if liste.movie.image != nil %>
+					<li class="image"><%= image_tag("http://image.tmdb.org/t/p/w154/" + liste.movie.image, :alt => "Affiche film") %></li>
+				<% else %>
+					<li class=""> Affiche indisponible </li>
+				<% end %>
+				
+				<li class="deleted"><%= link_to "Supprimer", controller: "listes", action: "delete", id: liste.movie.id %></li><% @idcheck += 1 %>
+			</ul>
+		<% end %>
+
+	</div>
+<% end %>

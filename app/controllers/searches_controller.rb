@@ -1,4 +1,4 @@
-class SearchController < ApplicationController
+class SearchesController < ApplicationController
 	
 	
   require 'rubygems'
@@ -14,15 +14,16 @@ class SearchController < ApplicationController
   end
   
   def index
- 
+ 	@title = 'Popular Movies'
+ 	@couleur = 1
 	headers = {
 		:accept => 'application/json'
 	}
 	@dejadansList = Array.new
 	z = 0
-	@maList = Liste.connection.select_all("SELECT id_film FROM listes WHERE id_user = ' #{current_user.id}'")
+	@maList = Liste.connection.select_all("SELECT movie_id FROM listes WHERE user_id = ' #{current_user.id}'")
 	@maList.each do 
-		@dejadansList <<  @maList[z]["id_film"]
+		@dejadansList <<  @maList[z]["movie_id"]
 		z += 1
 	end
 	@response = RestClient.get 'http://api.themoviedb.org/3/movie/popular?language=fr&api_key=20c4c7eb600624da5fa682498ce2ca33&page=1'
@@ -35,9 +36,9 @@ class SearchController < ApplicationController
   def result
 	@dejadansListe = Array.new
 	i = 0
-	@maListe = Liste.connection.select_all("SELECT id_film FROM listes WHERE id_user = ' #{current_user.id}'")
+	@maListe = Liste.connection.select_all("SELECT movie_id FROM listes WHERE user_id = ' #{current_user.id}'")
 	@maListe.each do 
-		@dejadansListe <<  @maListe[i]["id_film"]
+		@dejadansListe <<  @maListe[i]["movie_id"]
 		i += 1
 	end
 	@bandeA = Array.new

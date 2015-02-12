@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
   resources :recherches
 
-  get 'search/index'
-  post 'search/result'
-  get 'liste/add'
-  get 'liste/vu'
-  get 'liste/delete'
-  get 'liste/index'
+  get 'searches/index'
+  post 'searches/result'
+  get 'listes/add'
+  get 'listes/vu'
+  get 'listes/delete'
+  get 'listes/index'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'search#index'
+  root to: 'searches#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

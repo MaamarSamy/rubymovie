@@ -10,7 +10,9 @@ default: &default
   timeout: 5000
   port: 3306
   username: root
-  password:
+  password: root
+  encoding: utf8
+  reconnect: false
 
 development:
   <<: *default

@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221120123) do
+ActiveRecord::Schema.define(version: 20150212152830) do
 
   create_table "listes", force: true do |t|
-    t.integer  "id_user"
-    t.integer  "id_film"
+    t.integer  "user_id"
+    t.integer  "movie_id"
     t.boolean  "checked"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141221120123) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "id_tmdb"
   end
 
   create_table "recherches", force: true do |t|
