@@ -1,25 +1,20 @@
-<h1>Search#result</h1>
-<p>Find me in app/views/search/result.html.erb</p>
-<p> variable de recherche <%=  @test %> </p>
+<h1>Search#infos</h1>
 
-<% if (@result_search.empty? == true) %>
-	<h3> Malheureusement votre recherche n'a renvoyé aucun résultat. </h3>
-<% else %>
-	<table class="listFilm">
-	  <tr>
-		<th>Titre</th>
-		<th>Bande Annonce</th>
-		<th>Poster</th>
-		<th>Ajouter à ma liste</th>
-	  </tr>
-
-	<% @result_search.each do |films| %>
+	<div class="infos">
+		<% if parse.poster_path != nil %>
+			<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + parse.poster_path, :alt => "Affiche film") %></td>
+		<% else %>
+			<td> Affiche indisponible </td>
+		<% end %>
+		<p><%= parse.overview %></p>
+	</div>
+	<% @filmSearch.each do |films| %>
 	  <tr>
 		<td><%= films.title %></td>
-		<% if @bande_annonce[@a] == "nope" %>
+		<% if @bandeA[@a] == "nope" %>
 			<td> Bande annonce non disponible </td>
 		<% else %>
-			<td><iframe src="https://www.youtube.com/embed/<%= @bande_annonce[@a] %>" width="320" height="240" frameborder="0"></iframe></td>
+			<td><iframe src="https://www.youtube.com/embed/<%= @bandeA[@a] %>" width="320" height="240" frameborder="0"></iframe></td>
 		<% end %>
 		
 		<% if films.poster_path != nil %>

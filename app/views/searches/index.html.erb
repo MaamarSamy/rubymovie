@@ -8,27 +8,22 @@
 <% end %>
 </div>
 <div class="listFilm">
-	<% @test["results"].each do |films| %>
-
-
-
-	  <% if @cote==1 %>
-        <ul class="droite">
-        <% @cote += 1 %>
-      <% else %>
-        <ul class="gauche">
-        <% @cote = 1 %>
-      <% end %>
-	
-    	<li><%= image_tag("http://image.tmdb.org/t/p/w154/" + films["poster_path"], :alt => "Affiche du film") %></li>
-        <li><p><%= films["title"] %></p>
-		<% if @dejadansList.include?(films["id"]) == true %>
-			<p> Ce film est déjà dans votre liste </p>
-		<% else %>
-			<p><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films["id"] %></p>
-		<% end %>
-        </li>
-	  </ul>
+	<% @popular["results"].each do |films| %>
+		<ul>	
+			<li><%= image_tag("http://image.tmdb.org/t/p/w154/" + films["poster_path"], :alt => "Affiche du film") %></li>
+			<li><p><%= films["title"] %></p></li>
+			<% movie = Movie.where(id_tmdb:films["id"]) %>
+			<% if (!movie.empty?) %>
+				<% if(current_user.listes.where(movie_id:movie.first.id).first == nil) %>
+					<li><p><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films["id"] %></p></li>
+				<% else %>
+					<li><p> Film déjà dans votre liste </p></li>
+				<% end %>
+			<% else %>
+				<li><p><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films["id"] %></p></li>
+			<% end %>
+				
+		</ul>
 	<% end %>
 	
 </div>

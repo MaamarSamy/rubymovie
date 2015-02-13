@@ -1,21 +1,30 @@
 <div id="header2">
 <h1>Voici votre liste</h1>
-
-<% if (@maListe.empty? == true) %>
-	<h1>Votre liste et actuellement vide!</h1></div>
+</div>
+<% if (@ma_liste.empty? == true) %>
+	<h1>Votre liste et actuellement vide!</h1>
 <% else %>
 	<div class="listFilm">
-		<% @maListe.each do |liste| %>
-		     <%  p liste.movie %>
-				<li class="title"><%= liste.movie.name %></li>
-				<% if liste.movie.image != nil %>
-					<li class="image"><%= image_tag("http://image.tmdb.org/t/p/w154/" + liste.movie.image, :alt => "Affiche film") %></li>
-				<% else %>
-					<li class=""> Affiche indisponible </li>
-				<% end %>
-				
-				<li class="deleted"><%= link_to "Supprimer", controller: "listes", action: "delete", id: liste.movie.id %></li><% @idcheck += 1 %>
-			</ul>
+		<% @ma_liste.each do |liste| %>
+			<div class="film">
+				<div class="image">
+					<% if liste.movie.image != nil %>
+						<li class="image"><%= image_tag("http://image.tmdb.org/t/p/w154/" + liste.movie.image, :alt => "Affiche film") %></li>
+					<% else %>
+						<li class=""> Affiche indisponible </li>
+					<% end %>
+				</div>
+				<div class="info">
+					<p class="title"><%= liste.movie.name %></p>
+					<p class="desc"><%= liste.movie.description %></p>
+					<% if liste.checked == false %>
+						<p class="ajout"><%= link_to "Marquer comme 'Vu'", controller: "listes", action: "vu", id: liste.movie.id %></p>
+					<% else %>
+						<p class="ajout">Film vu</p>
+					<% end %>
+					<p class="deleted"><%= link_to "Supprimer", controller: "listes", action: "delete", id: liste.movie.id %></p>
+				</div>
+			</div>
 		<% end %>
 
 	</div>
