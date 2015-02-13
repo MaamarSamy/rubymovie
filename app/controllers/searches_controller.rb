@@ -18,11 +18,12 @@ class SearchesController < ApplicationController
 	end
 
 	def result
-
+        @title = "Résultat de recherche"
+        @test = params["search"]
 		@bande_annonce = Array.new
 		@a = 0
 		@result_search = Array.new
-		@result = TmdbMovie.find(:title => params["search"], :limit => 10, :expand_results => true)
+		@result = TmdbMovie.find(:title => params["search"], :limit => 2, :expand_results => true)
 		@result.each do |f|
 			@result_search << f
 		end

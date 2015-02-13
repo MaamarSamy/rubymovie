@@ -15,16 +15,15 @@
  */
 header{
 	margin: 0;
-	width: 100%;
-	background: #4F7F7F;
-	text-align: right;
-	height: 50px;
-	line-height: 50px;
+    width: 100%;
+    text-align: right;
+    height: 50px;
+    line-height: 50px;
 }
 
 header a{
 	font-size: 17px;
-	color: #fff !important;
+    color: #27ae60!important;
 }
 header p.title{
 	float: left;
@@ -32,9 +31,15 @@ header p.title{
 	margin-left: 2%;
 	font-family: fantasy;
 	margin:0;
-	color: #0a1f1f;
+	color: #34495e;
 }
-header p.log{
+header ul.log{
 	margin:0;
 	color:#0a1f1f;
+    float: right;
 }
+@media screen and (max-width: 540px)
+{ 
+    
+}
+

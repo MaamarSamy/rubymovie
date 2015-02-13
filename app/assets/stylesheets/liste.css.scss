@@ -7,12 +7,13 @@
 	margin: 0 auto;
 }
 ul{
-	width: 50% !important;
-	float:left;
-	padding:0;
-	background: #4F7F7F;
-	margin-bottom: 0.5;
-	margin-top: 0
+	width: 49% !important;
+    float: left;
+    padding: 0;
+    /* background: #4F7F7F; */
+    margin-bottom: 0.5;
+    margin-top: 0;
+    border: #ccc solid 1px;
 }
 
 ul li p{
@@ -20,6 +21,16 @@ ul li p{
 	padding-left: 35%;
 	font-size: 20px;
 	font-family: Arial, sans-serif;
+}
+p.add{
+    letter-spacing: 1.5px;
+    font-weight: bold;
+}
+p.title{
+    font-family: fantasy;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    color: #34495e;
 }
 
 li {
@@ -46,10 +57,51 @@ img{
 	text-align: right;
 }
 a{
-	font-size: 25px;
-	background: #0a1f1f;
-	text-decoration: none;
-	padding: 5px;
-	border-radius: 7px;
-	color: #fff !important;
+	font-size: 22px;
+    background: transparent;
+    text-decoration: none;
+    border-radius: 2px;
+    color: #27ae60;
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding: 8px;
+    border: #27ae60 1px solid;
+}
+
+@media screen and (max-width: 1024px)
+{
+    ul li p{margin-left: 15px;}
+}
+
+@media screen and (max-width: 860px)
+{
+    ul li p{
+        margin-left: 50px;
+    }
+    p a{
+        font-size: 17px;
+        letter-spacing: 2px;
+    }
+}
+
+@media screen and (max-width: 750px)
+{
+    ul{
+        width: 95% !important;
+        margin-right: 0.5%;
+        float: none;
+        height: 231px;
+   }
+    
+    ul li p{margin: 0;}
+}
+@media screen and (max-width: 540px)
+{
+    ul{height: 360px;}
+    ul li img{float: none;}
+    
+    ul li p {
+        text-align: center;
+        padding: 0;
+    }
 }

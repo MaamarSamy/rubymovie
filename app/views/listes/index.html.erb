@@ -1,30 +1,34 @@
 <div id="header2">
+<%= form_tag(:controller => "searches", :action => "result") do %>
+  <%= text_field_tag('search', nil, :placeholder => "Faîtes une nouvelle recherche") %>
+  <%= submit_tag("Valider", :class => "submit_search") %>
+<% end %>
 <h1>Voici votre liste</h1>
+    
 </div>
 <% if (@ma_liste.empty? == true) %>
 	<h1>Votre liste et actuellement vide!</h1>
 <% else %>
 	<div class="listFilm">
 		<% @ma_liste.each do |liste| %>
-			<div class="film">
-				<div class="image">
+            <ul>
 					<% if liste.movie.image != nil %>
 						<li class="image"><%= image_tag("http://image.tmdb.org/t/p/w154/" + liste.movie.image, :alt => "Affiche film") %></li>
 					<% else %>
 						<li class=""> Affiche indisponible </li>
 					<% end %>
-				</div>
-				<div class="info">
-					<p class="title"><%= liste.movie.name %></p>
-					<p class="desc"><%= liste.movie.description %></p>
+        <li>
+				<ul class="info">
+					<li class="title"><%= liste.movie.name %></li>
 					<% if liste.checked == false %>
-						<p class="ajout"><%= link_to "Marquer comme 'Vu'", controller: "listes", action: "vu", id: liste.movie.id %></p>
+						<li class="ajout"><%= link_to "Marquer comme 'Vu'", controller: "listes", action: "vu", id: liste.movie.id %></li>
 					<% else %>
-						<p class="ajout">Film vu</p>
+						<li class="ajout">Film vu</li>
 					<% end %>
-					<p class="deleted"><%= link_to "Supprimer", controller: "listes", action: "delete", id: liste.movie.id %></p>
-				</div>
-			</div>
+					<li class="deleted"><%= link_to "Supprimer", controller: "listes", action: "delete", id: liste.movie.id %></li>
+				</ul>
+            </li>
+			</ul>
 		<% end %>
 
 	</div>

@@ -1,48 +1,55 @@
-<h1>Search#result</h1>
-<p>Find me in app/views/search/result.html.erb</p>
-<p> variable de recherche <%=  @test %> </p>
+<div id="header2">
+<%= form_tag(:controller => "searches", :action => "result") do %>
+  <%= text_field_tag('search', nil, :placeholder => "Faîtes une nouvelle recherche") %>
+  <%= submit_tag("Valider", :class => "submit_search") %>
+<% end %>
+
+</div>
+<h2> Résultat de recherche pour : <strong><%=  @test %></strong> </h2>
 
 <% if (@result_search.empty? == true) %>
 	<h3> Malheureusement votre recherche n'a renvoyé aucun résultat. </h3>
 <% else %>
-	<table class="listFilm">
-	  <tr>
-		<th>Titre</th>
-		<th>Bande Annonce</th>
-		<th>Poster</th>
-		<th>Ajouter à ma liste</th>
-	  </tr>
+	<div class="listFilm">
 
 	<% @result_search.each do |films| %>
-	  <tr>
-		<td><%= films.title %></td>
-		<% if @bande_annonce[@a] == "nope" %>
-			<td> Bande annonce non disponible </td>
+	  <% if @cote==1 %>
+        <ul class="droite">
+	        <% @cote += 1 %>
+	      <% else %>
+	        <ul class="gauche">
+	        <% @cote = 1 %>
+	      <% end %>
+        <% if films.poster_path != nil %>
+			<li><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></li>
 		<% else %>
-			<td><iframe src="https://www.youtube.com/embed/<%= @bande_annonce[@a] %>" width="320" height="240" frameborder="0"></iframe></td>
+			<li> Affiche indisponible </li>
+		<% end %>
+		<li><%= films.title %></li>
+		<% if @bande_annonce[@a] == "nope" %>
+			<li> Bande annonce non disponible </li>
+		<% else %>
+			<li><iframe src="https://www.youtube.com/embed/<%= @bande_annonce[@a] %>" width="320" height="240" frameborder="0"></iframe></li>
 		<% end %>
 		
-		<% if films.poster_path != nil %>
-			<td><%= image_tag("http://image.tmdb.org/t/p/w154/" + films.poster_path, :alt => "Affiche film") %></td>
-		<% else %>
-			<td> Affiche indisponible </td>
-		<% end %>
+		
+        
 		
 		<% movie = Movie.where(id_tmdb:films.id) %>
 		<% if (!movie.empty?) %>
 			<% if(current_user.listes.where(movie_id:movie.first.id).first == nil) %>
-				<td><p><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films.id %></p></td>
+				<li><p><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films.id %></p></li>
 			<% else %>
-				<td><p> Film déjà dans votre liste </p></td>
+				<li><p> Film déjà dans votre liste </p></li>
 			<% end %>
 		<% else %>
-			<td><p><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films.id %></p></td>
+			<li><%= link_to "Ajouter ce film", controller: "listes", action: "add", id: films.id %></li>
 		<% end %>
 		
-	  </tr>
+	  </ul>
 	  <% @a += 1 %>
 	<% end %>
 	  
 
-	</table>
+	</div>
 <% end %>

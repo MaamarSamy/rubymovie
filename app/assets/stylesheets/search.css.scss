@@ -4,10 +4,11 @@
 #header2{
 	width: 100%;
 	text-align: center;
-	background: #0a1f1f;
+	background: #34495e;
 	margin-bottom: 3%;
 	height: 90px;
 	line-height: 90px;
+    color: #34495e;
 
 }
 #search{
@@ -28,4 +29,6 @@ h1{
 }
 .gauche{width:49% !important;margin-right: 0.5%;}
 .droite{width:49% !important;margin-left: 0.5%;}
+
+ul.info{border: none;}
 
